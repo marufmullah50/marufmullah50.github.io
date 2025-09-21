@@ -1,0 +1,5 @@
+your-website/
+├── index.html (your main HTML file)
+├── images/
+│   ├── maruf-photo.jpg (your profile photo)
+│   ├── cover-photo.jpg (your background image)
