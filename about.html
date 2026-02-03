@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Me — Md. Maruf Mullah</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="nav-logo">Maruf Mullah</a>
+            <button class="menu-toggle" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link active">About</a></li>
+                <li><a href="education.html" class="nav-link">Education</a></li>
+                <li><a href="skills.html" class="nav-link">Skills</a></li>
+                <li><a href="research.html" class="nav-link">Research</a></li>
+                <li><a href="projects.html" class="nav-link">Projects</a></li>
+                <li><a href="experience.html" class="nav-link">Experience</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="section">
+        <div class="container">
+            <div class="glass-panel" style="padding: 40px; margin-top: 40px;">
+                <div class="grid-sidebar">
+
+                    <!-- Bio Content -->
+                    <div class="section-content">
+                        <h1 class="section-title">About Me</h1>
+                        <p>I'm <strong>Md. Maruf Mullah</strong>, a recent Mechanical Engineering graduate from the
+                            Military Institute of Science and Technology (MIST). My journey combines traditional
+                            engineering fundamentals with cutting-edge computational approaches.</p>
+                        <p>My work focuses on materials engineering, additive manufacturing, and data-driven modeling. I
+                            apply machine learning and deep learning techniques to predict material behavior, analyze
+                            performance patterns, and support decision-making in engineering processes.</p>
+                        <p>I have experience in CAD/CAM design, FDM 3D printing workflows, and prototyping, along with
+                            developing small autonomous and robotic systems. My projects include surface roughness
+                            prediction using machine learning, freshwater fish image classification with MobileNetV2,
+                            wind forecasting using ANN/CatBoost, and machining tool design and fabrication.</p>
+                        <p>I aim to connect materials science, manufacturing methods, and intelligent computational
+                            tools to create efficient and practical engineering solutions. I am open to collaboration,
+                            research discussions, and innovation-oriented projects.</p>
+
+                        <div style="margin-top: 30px;">
+                            <h3 style="color: var(--primary-color);">Research Interests</h3>
+                            <ul
+                                style="list-style: disc; padding-left: 20px; color: var(--text-secondary); line-height: 1.8;">
+                                <li>Machine Learning & Deep Learning in Mechanical Engineering</li>
+                                <li>Materials Science, Metamaterials</li>
+                                <li>Autonomous System & Robotics</li>
+                                <li>Smart Manufacturing</li>
+                                <li>Renewable Energy Applications with Data-Driven Methods</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Sidebar / Image -->
+                    <div style="text-align: center;">
+                        <div
+                            style="width: 200px; height: 200px; border-radius: 50%; overflow: hidden; border: 4px solid var(--glass-border); margin: 0 auto 20px; box-shadow: var(--glass-shadow);">
+                            <img src="assets/images/profile.jpg" alt="Md. Maruf Mullah"
+                                style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <a href="https://github.com/marufmullah50/CV_Resume" target="_blank" class="btn btn-primary"
+                            style="width: 100%;">
+                            <i class="fas fa-download"></i> Download CV
+                        </a>
+
+                        <div style="margin-top: 30px; text-align: left;">
+                            <h4
+                                style="border-bottom: 1px solid var(--glass-border); padding-bottom: 10px; margin-bottom: 15px;">
+                                Quick Info</h4>
+                            <p style="margin-bottom: 10px;"><i class="fas fa-graduation-cap"
+                                    style="width: 25px; color: var(--accent-color);"></i> B.Sc. in Mechanical
+                                Engineering</p>
+                            <p style="margin-bottom: 10px;"><i class="fas fa-university"
+                                    style="width: 25px; color: var(--accent-color);"></i> MIST, Dhaka</p>
+                            <p style="margin-bottom: 10px;"><i class="fas fa-map-marker-alt"
+                                    style="width: 25px; color: var(--accent-color);"></i> Dhaka, Bangladesh</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="mailto:md.marufmullah50@gmail.com"><i class="fas fa-envelope"></i></a>
+                <a href="https://www.linkedin.com/in/marufmullah50" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/marufmullah50" target="_blank"><i class="fab fa-github"></i></a>
+            </div>
+            <p class="copyright">&copy; 2026 Md. Maruf Mullah. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <style>
+        @media (max-width: 900px) {
+            .glass-panel>div {
+                grid-template-columns: 1fr !important;
+            }
+
+            .glass-panel>div>div:last-child {
+                order: -1;
+            }
+        }
+    </style>
+    <script src="assets/js/main.js"></script>
+</body>
+
+</html>

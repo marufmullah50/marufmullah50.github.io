@@ -1,616 +1,161 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Md. Maruf Mullah — Mechanical Engineer</title>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
-    <style>
-        * { box-sizing: border-box; }
-        html,body { height: 100%; }
-        body {
-            font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
-            margin: 0;
-            color: #111;
-            /* mixed, not fully dark */
-            background: linear-gradient(135deg, #1f2a44 0%, #2f3f60 40%, #4b5563 100%);
-            -webkit-font-smoothing: antialiased;
-            line-height: 1.5;
-        }
-
-        /* Navbar */
-        .navbar { position: fixed; top: 0; left: 0; width: 100%; background: rgba(8,12,20,0.6); z-index: 9999; padding: 12px 0; box-shadow:0 6px 20px rgba(2,6,23,0.25); }
-        .nav-container { max-width:1200px; margin:0 auto; display:flex; justify-content:center; align-items:center; padding:0 1.25rem; }
-        .nav-links { display:flex; gap:1.25rem; list-style:none; margin:0; padding:0; }
-        .nav-links a { color:#e6eef8; text-decoration:none; font-weight:600; font-size:13px; padding:8px 12px; border-radius:8px; transition:all .18s ease; }
-        .nav-links a:hover { color:#fff; background: rgba(255,255,255,0.03); transform:translateY(-2px); }
-        .mobile-menu-btn { display:none; }
-
-        @media (max-width:768px) {
-            .nav-container { justify-content:space-between; }
-            .mobile-menu-btn { display:block; background:none; border:none; color:#fff; font-size:1.3rem; cursor:pointer; }
-            .nav-links { position:fixed; top:56px; left:0; width:100%; height:calc(100vh - 56px); background:#0b1220; flex-direction:column; align-items:center; padding-top:2rem; transform:translateY(-100%); transition:transform .25s ease; }
-            .nav-links.mobile-active { transform:translateY(0); }
-            .nav-links a { padding:1rem 0; font-size:16px; width:100%; text-align:center; border-bottom:1px solid rgba(255,255,255,0.03); }
-        }
-
-        /* Hero Section (cover) */
-        .hero {
-            background: linear-gradient(rgba(2,6,23,0.45), rgba(2,6,23,0.45)), url('images/cover-photo.png');
-            background-size: cover;
-            background-position: center;
-            min-height: 70vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
-            position: relative;
-            padding-top: 70px; /* leave room for navbar */
-            z-index: 3;
-        }
-        .hero::before { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,0.2); z-index: 1; }
-        .hero-content { z-index: 2; max-width: 900px; padding: 1.25rem; }
-
-        .profile-image {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            border: 5px solid rgba(255,255,255,0.12);
-            margin: 0 auto 1.25rem;
-            box-shadow: 0 12px 30px rgba(2,6,23,0.6);
-            background-image: url('images/maruf-photo.jpg');
-            background-size: cover;
-            background-position: center;
-            background-color: #667eea;
-        }
-
-        .hero h1 { font-size: 2.2rem; margin-bottom: .5rem; font-weight: 700; letter-spacing: .6px; color: #fff; text-shadow: 0 8px 30px rgba(0,0,0,0.6); }
-        .hero .subtitle { font-size: 1rem; margin-bottom: .6rem; opacity: 0.98; color: #f1f5f9; }
-        .hero .description { font-size: 0.95rem; margin-bottom: .8rem; opacity: 0.95; color: #e6eef8; }
-
-        .cta-buttons { display:flex; gap:.6rem; justify-content:center; flex-wrap:wrap; margin-top:8px; }
-        .btn-primary, .btn-secondary {
-            padding: 10px 20px; border-radius: 40px; text-decoration: none; font-weight:700; display:inline-block; font-size:0.95rem;
-            box-shadow: 0 8px 18px rgba(102,126,234,0.12);
-        }
-        .btn-primary { background:#ff6b6b; color:white; }
-        .btn-secondary { background:transparent; color:white; border:2px solid rgba(255,255,255,0.15); }
-
-        /* Page container that overlaps hero so About touches the cover */
-        .page-wrap {
-            width:92%;
-            max-width:1100px;
-            margin: -20px auto 60px; /* reduced overlap so About won't block CTA buttons */
-            padding:2rem;
-            border-radius:16px;
-            background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-            box-shadow: 0 30px 80px rgba(2,6,23,0.45);
-            position: relative;
-            z-index: 5;
-            backdrop-filter: blur(6px);
-        }
-
-        /* Section cards (glass, mixed color, not fully dark) */
-        .section-block {
-            background: rgba(255, 255, 255, 0.07); /* translucent */
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.07);
-            padding: 1.2rem 1rem;
-            margin: 1.1rem 0;
-            border-radius: 14px;
-            box-shadow: 0 10px 28px rgba(2,6,23,0.35);
-            transition: transform .28s cubic-bezier(.2,.9,.3,1), box-shadow .28s;
-            overflow: hidden;
-        }
-        .section-block:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 22px 60px rgba(2,6,23,0.55);
-            border: 1px solid rgba(255,255,255,0.12);
-        }
-        .section-block.in-view { transform: none; opacity: 1; }
-
-        /* Section title with mixed gradient text */
-        .section-title {
-            font-size:1.4rem;
-            margin-bottom:0.8rem;
-            text-align:center;
-            font-weight:800;
-            letter-spacing:0.4px;
-            background: linear-gradient(90deg, #ff6b6b 0%, #f59e0b 40%, #3b82f6 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .section-content { font-size:0.95rem; line-height:1.6; color:#eaf2ff; max-width:900px; margin:0 auto; }
-
-        /* About specifically: reduce top gap so it doesn't block the hero buttons */
-        #about { margin-top: 20px; padding-top: 12px; }
-
-        /* Skills grid (polished) */
-        .skills-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(200px,1fr)); gap:1rem; margin-top:1rem; }
-        .skill-card {
-            padding:1rem; border-radius:10px; text-align:center; transition:all .22s ease; border-left:4px solid rgba(102,126,234,0.9);
-            background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015));
-            color:#eaf2ff;
-        }
-        .skill-card i { font-size:1.9rem; color:#9fb2ff; margin-bottom:0.6rem; display:block; }
-        .skill-card h3 { font-size:1rem; margin-bottom:0.4rem; color:#f8fbff; }
-        .skill-card p { font-size:0.9rem; color:#cfe0ff; }
-
-        /* Projects grid — icons larger */
-        .projects-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(260px,1fr)); gap:1rem; margin-top:1rem; }
-        .project-card { border-radius:12px; padding:0.9rem; overflow:hidden; display:flex; gap:0.9rem; align-items:flex-start; background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); }
-        .project-card:hover { transform: translateY(-6px); box-shadow: 0 18px 46px rgba(2,6,23,0.45); }
-        .project-icon {
-            width:72px; height:72px; border-radius:14px; display:flex; align-items:center; justify-content:center; font-size:1.8rem;
-            background:linear-gradient(135deg,#667eea,#764ba2); color:white; flex-shrink:0;
-            box-shadow: 0 8px 22px rgba(102,126,234,0.14);
-        }
-        .project-title { font-size:1.06rem; font-weight:700; margin:0 0 0.35rem 0; color:#f8fbff; }
-        .project-description { font-size:0.92rem; color:#cfe0ff; margin:0 0 0.6rem 0; }
-        .project-link { padding:0.4rem 0.7rem; background:#ff6b6b; color:white; text-decoration:none; border-radius:20px; font-size:0.85rem; }
-
-        /* Timeline */
-        .timeline { position:relative; margin:0.5rem 0; }
-        .timeline::before { content:''; position:absolute; left:16px; top:0; bottom:0; width:2px; background:linear-gradient(#6ea0ff,#7c88ff); opacity:0.9; }
-        .timeline-item { margin-bottom:1rem; padding-left:60px; color:#eaf2ff; }
-        .timeline-item::before { content:''; position:absolute; left:8px; top:6px; width:18px; height:18px; background:#667eea; border-radius:50%; border:3px solid rgba(255,255,255,0.06); }
-        .timeline-content { padding:0.8rem; border-radius:8px; background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005)); border:1px solid rgba(255,255,255,0.02); }
-        .timeline-title { font-size:1rem; font-weight:700; color:#f8fbff; margin-bottom:0.3rem; }
-        .timeline-subtitle { color:#a9c3ff; font-weight:600; margin-bottom:0.4rem; }
-
-        /* Publications */
-        .publications-list { display:flex; flex-direction:column; gap:0.8rem; }
-        .publication-item { padding:0.8rem; border-radius:10px; background: linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.01)); color:#eaf2ff; }
-
-        /* Contact grid */
-        .contact-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(200px,1fr)); gap:0.75rem; margin-top:0.8rem; }
-        .contact-item { padding:0.9rem; border-radius:10px; text-align:center; display:flex; flex-direction:column; gap:0.4rem; align-items:center; justify-content:center; background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); color:#e6eef8; }
-        .contact-item i { font-size:1.3rem; color:#9fb2ff; }
-
-        /* CV button */
-        .cv-btn { padding:10px 22px; border-radius:40px; font-weight:700; font-size:0.95rem; display:inline-block; background:linear-gradient(135deg,#ff6b6b,#ff8e53); color:white; text-decoration:none; box-shadow: 0 12px 40px rgba(255,107,107,0.12); }
-
-        /* Form styles */
-        .contact-form { max-width:720px; margin:0 auto; display:flex; flex-direction:column; gap:0.6rem; }
-        .form-row { display:flex; gap:0.6rem; }
-        .form-row .form-control { flex:1; }
-        input[type="text"], input[type="email"], textarea {
-            width:100%; padding:10px 12px; border-radius:10px; border:1px solid rgba(255,255,255,0.06); font-size:0.95rem; background: rgba(0,0,0,0.18); color:#eaf2ff;
-        }
-        textarea { min-height:120px; resize:vertical; }
-        .form-submit { padding:10px 14px; border-radius:8px; font-weight:700; cursor:pointer; border:none; background:#667eea; color:white; box-shadow: 0 12px 30px rgba(102,126,234,0.12); }
-
-        /* Scroll top */
-        .scroll-top { position:fixed; bottom:1.5rem; right:1.5rem; width:44px; height:44px; background:#667eea; color:white; border-radius:50%; border:none; display:flex; align-items:center; justify-content:center; cursor:pointer; opacity:0; visibility:hidden; transition:all .25s ease; z-index:1000; }
-        .scroll-top.visible { opacity:1; visibility:visible; }
-
-        /* Certification badge */
-        .cert-badge { font-size:0.85rem; background:#d4edda; color:#155724; padding:4px 8px; border-radius:14px; display:inline-block; margin-right:0.5rem; margin-bottom:0.4rem; }
-
-        @media (max-width:768px) {
-            .hero h1 { font-size:1.6rem; }
-            .section-title { font-size:1.15rem; }
-            .section-block { padding:0.9rem; }
-            .page-wrap { margin: -40px 10px 40px; padding:1rem; border-radius:12px; }
-            .project-icon { width:60px; height:60px; font-size:1.5rem; }
-            .form-row { flex-direction: column; }
-        }
-
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Md. Maruf Mullah — Mechanical Engineer & Researcher</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body class="loading">
+
+<body>
+
     <!-- Navigation -->
     <nav class="navbar">
-        <div class="nav-container">
-            <ul class="nav-links">
-                <li><a href="#about" class="nav-link">About Me</a></li>
-                <li><a href="#education" class="nav-link">Education</a></li>
-                <li><a href="#research" class="nav-link">Research</a></li>
-                <li><a href="#projects" class="nav-link">Projects</a></li>
-                <li><a href="#skills" class="nav-link">Technical Skills</a></li>
-                <li><a href="#experience" class="nav-link">Experience & Achievements</a></li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
-                <li><a href="#cv" class="nav-link">Download CV</a></li>
-            </ul>
-            <button class="mobile-menu-btn" aria-label="Toggle menu">
+        <div class="container nav-container">
+            <a href="index.html" class="nav-logo">Maruf Mullah</a>
+            <button class="menu-toggle" aria-label="Toggle navigation">
                 <i class="fas fa-bars"></i>
             </button>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link active">Home</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="education.html" class="nav-link">Education</a></li>
+                <li><a href="skills.html" class="nav-link">Skills</a></li>
+                <li><a href="research.html" class="nav-link">Research</a></li>
+                <li><a href="projects.html" class="nav-link">Projects</a></li>
+                <li><a href="experience.html" class="nav-link">Experience</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <div class="profile-image" aria-hidden="true"></div>
-            <h1>Md. Maruf Mullah</h1>
-            <p class="subtitle">Mechanical Engineer & ML/DL Enthusiast</p>
-            <p class="description">Bridging classical engineering with computational tools, machine learning, and experimental research.</p>
-            <div class="cta-buttons">
-                <a href="#about" class="btn-primary">Learn More</a>
-                <a href="#contact" class="btn-secondary">Get In Touch</a>
+    <section class="hero section">
+        <div class="container hero-content">
+            <div
+                style="width: 180px; height: 180px; border-radius: 50%; overflow: hidden; border: 4px solid var(--primary-color); margin: 0 auto 30px; box-shadow: 0 10px 30px rgba(59, 130, 246, 0.4);">
+                <img src="assets/images/maruf-photo.jpg" alt="Md. Maruf Mullah"
+                    style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+            <h1 style="color: white; text-shadow: 0 4px 12px rgba(0,0,0,0.3);">Md. Maruf Mullah</h1>
+            <p style="font-size: 1.25rem; color: #cbd5e1; margin-bottom: 20px;">Mechanical Engineer | ML/DL
+                Enthusiast | Researcher</p>
+            <p style="max-width: 700px; margin: 0 auto 40px; font-size: 1.1rem; color: #e2e8f0;">
+                Bridging the gap between classical engineering and computational intelligence to solve complex problems
+                in materials science, manufacturing, and robotics.
+            </p>
+            <div style="display: flex; gap: 15px; justify-content: center;">
+                <a href="about.html" class="btn btn-primary">About Me</a>
+                <a href="contact.html" class="btn btn-secondary">Get In Touch</a>
             </div>
         </div>
     </section>
 
-    <!-- Main Content (overlaps hero so About touches cover but lowered) -->
-    <div class="page-wrap">
+    <!-- Section Previews -->
 
-        <!-- About Section (touching cover but lowered so it doesn't block CTA) -->
-        <section id="about" class="section-block" aria-labelledby="about-title">
-            <h2 id="about-title" class="section-title">About Me</h2>
-            <div class="section-content">
-                <p>I'm <strong>Md. Maruf Mullah</strong>, a recent Mechanical Engineering graduate from the Military Institute of Science and Technology (MIST). My journey combines traditional engineering fundamentals with cutting-edge computational approaches.</p>
-                <p>And my work focuses on materials engineering, additive manufacturing, and data-driven modeling. I apply machine learning and deep learning techniques to predict material behavior, analyze performance patterns, and support decision-making in engineering processes.
-
-I have experience in CAD/CAM design, FDM 3D printing workflows, and prototyping, along with developing small autonomous and robotic systems. My projects include surface roughness prediction using machine learning, freshwater fish image classification with MobileNetV2, wind forecasting using ANN/CatBoost, and machining tool design and fabrication.
-
-I aim to connect materials science, manufacturing methods, and intelligent computational tools to create efficient and practical engineering solutions. I am open to collaboration, research discussions, and innovation-oriented projects.</p>
-
-                <h4 style="color:#9fb2ff; margin-top:0.8rem; margin-bottom:0.4rem;">Research Interests</h4>
-                <ul style="padding-left:1.1rem; margin:0; color:#eaf2ff;">
-                    <li>Machine Learning & Deep Learning in Mechanical Engineering</li>
-                    <li>Materials Science, Metamaterials</li>
-					<li>Autonomous System & Robotics</li>
-                    <li>Smart Manufacturing</li>
-                    <li>Renewable Energy Applications with Data-Driven Methods</li>
-                </ul>
+    <!-- About Section -->
+    <section class="section">
+        <div class="container">
+            <div style="display: flex; flex-direction: column; gap: 20px;">
+                <h2 style="font-size: 2.5rem; color: var(--text-primary); margin-bottom: 20px;">About Me</h2>
+                <div style="font-size: 1.1rem; color: var(--text-secondary); line-height: 1.8;">
+                    <p>
+                        I am a dedicated <strong>Mechanical Engineer</strong> and researcher with a strong focus on
+                        bridging the gap between classical engineering and computational intelligence.
+                        Graduating from <strong>MIST</strong> with a B.Sc. in Mechanical Engineering, I have cultivated
+                        expertise in <strong>Advanced Manufacturing</strong>, <strong>Material
+                            Characterization</strong>, and <strong>Machine Learning</strong>.
+                    </p>
+                    <p>
+                        My work spans from developing <strong>YOLO-based computer vision systems</strong> for industrial
+                        safety and medical imaging to conducting in-depth research on the <strong>densification of
+                            tropical wood species</strong>.
+                        I am passionate about solving complex engineering problems using data-driven approaches,
+                        including finite element analysis (FEA) and deep learning algorithms.
+                    </p>
+                </div>
+                <a href="about.html" class="btn btn-primary" style="align-self: start; margin-top: 10px;">Read More</a>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Education Section -->
-        <section id="education" class="section-block" aria-labelledby="education-title">
-            <h2 id="education-title" class="section-title">Education</h2>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3 class="timeline-title">B.Sc. in Mechanical Engineering</h3>
-                        <p class="timeline-subtitle">Military Institute of Science and Technology (MIST)</p>
-                        <p><strong>Duration:</strong> Apr 2021 – May 2025</p>
-                        <p><strong>CGPA:</strong> 3.23/4.00</p>
+    <!-- Research Section -->
+    <section class="section" style="background: rgba(255, 255, 255, 0.5);">
+        <div class="container">
+            <div style="display: flex; flex-direction: column; gap: 20px;">
+                <h2 style="font-size: 2.5rem; color: var(--text-primary); margin-bottom: 20px;">Research & Publications
+                </h2>
+                <p style="font-size: 1.1rem; color: var(--text-secondary); max-width: 800px;">
+                    My research portfolio includes a comprehensive thesis on wood densification and multiple conference
+                    papers on material science and meteorological forecasting.
+                </p>
+                <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                    <div
+                        style="background: var(--glass-bg); padding: 15px 25px; border-radius: 8px; border: 1px solid var(--glass-border);">
+                        <strong>Thesis:</strong> Densification of Natural Wood
+                    </div>
+                    <div
+                        style="background: var(--glass-bg); padding: 15px 25px; border-radius: 8px; border: 1px solid var(--glass-border);">
+                        <strong>Paper:</strong> Impact Strength of Seasoned Wood (ICMEAS 2025)
                     </div>
                 </div>
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3 class="timeline-title">Higher Secondary Certificate (HSC)</h3>
-                        <p class="timeline-subtitle">Abdul Kadir Mollah City College</p>
-                        <p><strong>GPA:</strong> 5.00/5.00</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-<!-- Research & Publications -->
-<section id="research" class="section-block" aria-labelledby="research-title">
-    <h2 id="research-title" class="section-title">Research & Publications</h2>
-
-<!-- Undergraduate Thesis -->
-<div class="research-subsection">
-    <h3 style="font-size:1rem; color:#eaf2ff; margin-bottom:0.5rem;">
-        Undergraduate Thesis
-    </h3>
-    <div class="projects-grid" style="margin-top:0.5rem;">
-        <div class="project-card">
-            <div class="project-icon" aria-hidden="true"><i class="fas fa-tree"></i></div>
-            <div class="project-content">
-                <h4 class="project-title">
-                    Densification of Natural Wood to Improve Structural Properties
-                </h4>
-                <p class="project-description">
-                    Investigated the effects of three processing conditions-natural (untreated), seasoned, and chemically treated followed by densification on the structural performance of natural wood. The study covered three tropical wood species (<em>Swietenia macrophylla</em>, <em>Albizia procera</em>, and <em>Cordia subcordata</em>). Specimens were seasoned under controlled conditions or chemically pretreated using NaOH and Na<sub>2</sub>SO<sub>3</sub>, followed by thermo-mechanical hot-press densification. Comprehensive characterization was performed using tensile, compression, three-point bending, impact, moisture absorption, and SEM analyses in accordance with ASTM standards, revealing superior mechanical performance in chemically treated and densified samples.
-                </p>
-                <div class="project-links">
-                    <a href="https://drive.google.com/file/d/1vpVZQZMdddl-lyYXsE03T3hKZWrSqqi2/view?usp=drive_link"
-                       class="project-link" target="_blank" rel="noopener">
-                        View Thesis
-                    </a>
-                </div>
+                <a href="research.html" class="btn btn-secondary"
+                    style="align-self: start; margin-top: 10px; color: var(--text-primary); border-color: var(--text-primary);">View
+                    Research</a>
             </div>
         </div>
-    </div>
-</div>
+    </section>
 
-<!-- Manuscripts in Preparation -->
-<div class="research-subsection" style="margin-top:0.8rem;">
-    <h3 style="font-size:1rem; color:#eaf2ff; margin-bottom:0.5rem;">
-        Manuscripts in Preparation
-    </h3>
-    <div class="publications-list">
-        <div class="publication-item">
-            <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:0.5rem; flex-wrap:wrap;">
-                <h4 style="margin:0; font-size:1rem; color:#eaf2ff;">
-                    Effect of Groove Shapes on Microstructural and Mechanical Behavior of Pipe Welds under Post-Weld Heat Treatment
-                </h4>
-                <span style="font-size:0.85rem; background:#e2e3f3; color:#333; padding:4px 10px; border-radius:14px;">
-                    In Revision
-                </span>
-            </div>
-            <p style="margin:.4rem 0; color:#cfe0ff;">
-                <strong>Authors:</strong> Ibtesum Alam, A. S. K. Mobashawir Alam Mahee, Fatin Anzum Kakon,
-                Md. Insiat Islam Rabby, Liu Qingqing, <strong>Md. Maruf Mullah</strong>
-            </p>
-            <p style="margin:0; color:#9fb2ff;">
-                <em>Manuscript under revision for resubmission to a peer-reviewed journal.</em>
-            </p>
-        </div>
-    </div>
-</div>
-
-
-    <!-- Conference & Book Chapters -->
-    <div class="research-subsection" style="margin-top:0.8rem;">
-        <h3 style="font-size:1rem; color:#eaf2ff; margin-bottom:0.5rem;">Conference Papers & Book Chapters</h3>
-        <div class="publications-list">
-
-            <!-- ICMEAS Conference Paper -->
-            <div class="publication-item">
-                <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:0.5rem; flex-wrap:wrap;">
-                    <h4 style="margin:0; font-size:1rem; color:#eaf2ff;">
-                        Impact Strength and Moisture Behaviour of Natural, Densified and Seasoned Wood: An Experimental Study
-                    </h4>
-                    <span style="font-size:0.85rem; background:#d4edda; color:#155724; padding:4px 10px; border-radius:14px;">
-                        Accepted (Conference Paper)
-                    </span>
-                </div>
-                <p style="margin:.4rem 0; color:#cfe0ff;">
-                    <strong>Authors:</strong> Anika Tahsin, <strong>Md. Maruf Mullah</strong>, Md. Jamil Ahmed, Md. Anisur Rahman
+    <!-- Projects Section -->
+    <section class="section">
+        <div class="container">
+            <div style="display: flex; flex-direction: column; gap: 20px;">
+                <h2 style="font-size: 2.5rem; color: var(--text-primary); margin-bottom: 20px;">Projects</h2>
+                <p style="font-size: 1.1rem; color: var(--text-secondary); max-width: 800px;">
+                    I have led diverse projects ranging from <strong>Casting Defect Classification</strong> (99.9%
+                    accuracy) to <strong>Tailstock Tool Holder Design</strong>. My technical toolkit includes Python,
+                    SOLIDWORKS, ANSYS, and MATLAB.
                 </p>
-                <p style="margin:0; color:#9fb2ff;">
-                    <strong>Conference:</strong> 3rd International Conference on Mechanical Engineering and Applied Sciences (ICMEAS), 2025
-                </p>
-                <div style="margin-top:0.5rem;">
-                    <a href="https://drive.google.com/file/d/18LPhozjqo-WKTq83NEwYE-vnDuJbnRpy/view?usp=sharing"
-                       class="project-link" target="_blank" rel="noopener">View Paper</a>
-                </div>
-            </div>
-
-            <!-- ICWFM Book Chapter -->
-            <div class="publication-item">
-                <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:0.5rem; flex-wrap:wrap;">
-                    <h4 style="margin:0; font-size:1rem; color:#eaf2ff;">
-                        Meteorological Drought Prediction Using Different Forecasting Models
-                    </h4>
-                    <span style="font-size:0.85rem; background:#fff3cd; color:#856404; padding:4px 10px; border-radius:14px;">
-                        Accepted (Book Chapter)
-                    </span>
-                </div>
-                <p style="margin:.4rem 0; color:#cfe0ff;">
-                    <strong>Authors:</strong> Zahid Imtiaz; Najmus Sadat Khan; <strong>Md. Maruf Mullah</strong>; M. Shahjahan Mondal
-                </p>
-                <p style="margin:0; color:#9fb2ff;">
-                    <strong>Book / Conference:</strong> 10th International Conference on Water and Flood Management (ICWFM), 2025
-                </p>
-            </div>
-
-        </div>
-    </div>
-</section>
-<!-- Projects -->
-<section id="projects" class="section-block" aria-labelledby="projects-title">
-    <h2 id="projects-title" class="section-title">Projects</h2>
-    <div class="projects-grid">
-
-        <div class="project-card">
-            <div class="project-icon" aria-hidden="true"><i class="fas fa-tools"></i></div>
-            <div class="project-content">
-                <h3 class="project-title">Tailstock Tool Holder</h3>
-                <p class="project-description">
-                    Designed and fabricated a precision tailstock die tool holder using SolidWorks-based CAD modeling and conventional lathe machining. The project emphasized dimensional accuracy, ergonomic design, manufacturability, and functional validation.
-                </p>
-                <div class="project-links">
-                    <a href="https://drive.google.com/file/d/1pXTrq3WtxePYmgT3U3wV0EFVgUJbA0YM/view?usp=drive_link" class="project-link" target="_blank" rel="noopener">View Details</a>
-                </div>
+                <a href="projects.html" class="btn btn-secondary"
+                    style="align-self: start; margin-top: 10px; color: var(--text-primary); border-color: var(--text-primary);">View
+                    Projects</a>
             </div>
         </div>
-<div class="project-card">
-    <div class="project-icon" aria-hidden="true"><i class="fas fa-industry"></i></div>
-    <div class="project-content">
-        <h3 class="project-title">Casting Defect Classification</h3>
-        <p class="project-description">
-            Developed deep learning models to classify casting products as defective or non-defective using real industrial images. Evaluated CNN, MobileNetV3, Vision Transformer (ViT), and YOLO-based classifiers, achieving 99.9% accuracy with YOLO.
-        </p>
-        <div class="project-links">
-            <a href="https://github.com/marufmullah50/Casting-Defect-identify" class="project-link" target="_blank" rel="noopener">GitHub</a>
-        </div>
-    </div>
-</div>
+    </section>
 
-        <div class="project-card">
-            <div class="project-icon" aria-hidden="true"><i class="fas fa-fish"></i></div>
-            <div class="project-content">
-                <h3 class="project-title">BD Freshwater Fish Detection App</h3>
-                <p class="project-description">
-                    Developed a deep learning–based image classification system using MobileNetV2 to identify 12 Bangladeshi freshwater fish species. The project involved dataset preprocessing, model fine-tuning, and deployment through an interactive Streamlit application.
+    <!-- Experience Section -->
+    <section class="section" style="background: rgba(255, 255, 255, 0.5);">
+        <div class="container">
+            <div style="display: flex; flex-direction: column; gap: 20px;">
+                <h2 style="font-size: 2.5rem; color: var(--text-primary); margin-bottom: 20px;">Experience &
+                    Achievements</h2>
+                <p style="font-size: 1.1rem; color: var(--text-secondary); max-width: 800px;">
+                    Beyond academics, I have gained industrial experience at <strong>IFAD Autos PLC</strong> and
+                    <strong>PRAN-RFL Group</strong>, and demonstrated leadership as a Science Fair Champion and Scout
+                    Volunteer.
                 </p>
-                <div class="project-links">
-                    <a href="https://github.com/marufmullah50/Fish-detection-app" class="project-link" target="_blank" rel="noopener">GitHub</a>
-                </div>
+                <a href="experience.html" class="btn btn-secondary"
+                    style="align-self: start; margin-top: 10px; color: var(--text-primary); border-color: var(--text-primary);">View
+                    Experience</a>
             </div>
         </div>
+    </section>
 
-        <div class="project-card">
-            <div class="project-icon" aria-hidden="true"><i class="fas fa-image"></i></div>
-            <div class="project-content">
-                <h3 class="project-title">Photo Background Editor</h3>
-                <p class="project-description">
-                    Implemented an automated image background removal tool using a U²-Net deep learning model (ONNX). The application supports accurate foreground segmentation and customizable background replacement via a Streamlit-based interface.
-                </p>
-                <div class="project-links">
-                    <a href="https://github.com/marufmullah50/Photo-background-editor-Streamlit-App" class="project-link" target="_blank" rel="noopener">GitHub</a>
-                </div>
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="mailto:md.marufmullah50@gmail.com"><i class="fas fa-envelope"></i></a>
+                <a href="https://www.linkedin.com/in/marufmullah50" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/marufmullah50" target="_blank"><i class="fab fa-github"></i></a>
             </div>
+            <p class="copyright">&copy; 2026 Md. Maruf Mullah. All rights reserved.</p>
         </div>
+    </footer>
 
-        <div class="project-card">
-            <div class="project-icon" aria-hidden="true"><i class="fas fa-chart-bar"></i></div>
-            <div class="project-content">
-                <h3 class="project-title">Surface Roughness Prediction</h3>
-                <p class="project-description">
-                    Applied supervised machine learning models to predict surface roughness in machining processes based on cutting parameters. Multiple algorithms were evaluated, with Decision Tree regression achieving the best performance (R² = 0.85).
-                </p>
-                <div class="project-links">
-                    <a href="https://github.com/marufmullah50/Surface_Roughness_Prediction" class="project-link" target="_blank" rel="noopener">GitHub</a>
-                </div>
-            </div>
-        </div>
+    <script src="assets/js/main.js"></script>
+</body>
 
-        <div class="project-card">
-            <div class="project-icon" aria-hidden="true"><i class="fas fa-wind"></i></div>
-            <div class="project-content">
-                <h3 class="project-title">Dhaka Wind Velocity Prediction</h3>
-                <p class="project-description">
-                    Developed data-driven forecasting models using Artificial Neural Networks and CatBoost to predict wind speed and direction in Dhaka, supporting feasibility analysis for urban and high-rise wind energy applications.
-                </p>
-                <div class="project-links">
-                    <a href="https://github.com/marufmullah50/Dhaka_Wind_Property_Prediction" class="project-link" target="_blank" rel="noopener">GitHub</a>
-                </div>
-            </div>
-        </div>
-
-    </div>
-</section>
-
-
-        <!-- Skills -->
-        <section id="skills" class="section-block" aria-labelledby="skills-title">
-            <h2 id="skills-title" class="section-title">Technical Skills</h2>
-            <div class="skills-grid">
-                <div class="skill-card">
-                    <i class="fas fa-code" aria-hidden="true"></i>
-                    <h3>Programming</h3>
-                    <p>Python, C, C++, HTML, MATLAB</p>
-                </div>
-                <div class="skill-card">
-                    <i class="fas fa-brain" aria-hidden="true"></i>
-                    <h3>Machine Learning/Deep Learning</h3>
-                    <p>TensorFlow, PyTorch, Scikit-learn, Neural Networks , YOLO </p>
-                </div>
-                <div class="skill-card">
-                    <i class="fas fa-chart-line" aria-hidden="true"></i>
-                    <h3>Data Analysis/Data Visualization</h3>
-                    <p>Microsoft Excel, Google Sheets, NumPy, Pandas, Matplotlib, Seaborn</p>
-                </div>
-                <div class="skill-card">
-                    <i class="fas fa-cube" aria-hidden="true"></i>
-                    <h3>CAD/CAM</h3>
-                    <p>SolidWorks CAD/CAM, FreeCAD , Anycubic Cobra</p>
-                </div>
-                <div class="skill-card">
-                    <i class="fas fa-file-alt" aria-hidden="true"></i>
-                    <h3>Documentation/Version Control</h3>
-                    <p>LaTeX, Microsoft Office, Git, GitHub</p>
-                </div>
-
-                <div class="skill-card">
-                    <i class="fas fa-atom" aria-hidden="true"></i>
-                    <h3>Quantum Computing</h3>
-                    <p>Qiskit (IBM)</p>
-                </div>
-
-                <div class="skill-card">
-                    <i class="fas fa-flask" aria-hidden="true"></i>
-                    <h3>Simulation</h3>
-                    <p>Ansys, COMSOL</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Experience & Achievements -->
-        <section id="experience" class="section-block" aria-labelledby="experience-title">
-            <h2 id="experience-title" class="section-title">Experience & Achievements</h2>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3 class="timeline-title">Industrial Attachment</h3>
-                        <p class="timeline-subtitle">IFAD Autos Ltd., Dhamrai</p>
-                        <p>Assisted in vehicle assembly and mechanical fitting processes; gained hands-on experience in quality control and assembly optimization.</p>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3 class="timeline-title">MTO-Engineer Assessment</h3>
-                        <p class="timeline-subtitle">PRAN Group – Kaliganj Agro-Processing Ltd.</p>
-                        <p>Completed a 7-day operational assessment across several processing lines and suggested productivity improvements.</p>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3 class="timeline-title">Volunteer Activities</h3>
-                        <p class="timeline-subtitle">MIST Career Club, Motomist Club, Innovation Club</p>
-                        <p>Active participation in career development events and technical training programs.</p>
-                    </div>
-                </div>
-            </div>
-<div style="margin-top:0.8rem;">
-    <h4 style="margin:0 0 .4rem 0; color:#9fb2ff;">Certifications</h4>
-    <ul style="margin:0; padding-left:1.1rem; color:#eaf2ff;">
-        <li>Machine Learning Specialization — Coursera</li>
-        <li>Neural Networks and Deep Learning — Coursera</li>
-        <li>Mathematics for Data Science — Simplilearn</li>
-        <li>Python Programming Bootcamp — Decoders Academy</li>
-		<li>MATLAB Onaramp - Mathworks </li>
-        <li>Git Training — Simplilearn</li>
-        <li>Google Sheets — Simplilearn</li>
-        <li>Project-Based Excel — Grameenphone Academy</li>
-    </ul>
-
-    <h4 style="margin-top:0.6rem; margin-bottom:0.25rem; color:#9fb2ff;">Participation & Awards</h4>
-    <ul style="margin:0; padding-left:1.1rem; color:#eaf2ff;">
-        <li>Participation Certificate — ICMEAS 2025</li>
-        <li>Workshop Participant — Writing & Structuring the Literature Review (ABS Research Academy)</li>
-    </ul>
-</div>
-
-        <!-- Contact -->
-        <section id="contact" class="section-block" aria-labelledby="contact-title">
-            <h2 id="contact-title" class="section-title">Contact</h2>
-
-            <div class="contact-grid">
-                <a href="mailto:md.marufmullah50@gmail.com" class="contact-item">
-                    <i class="fas fa-envelope" aria-hidden="true"></i>
-                    <h3 style="margin:0; font-size:0.95rem;">Email</h3>
-                    <p style="margin:0; color:#cfe0ff; font-size:0.9rem;">md.marufmullah50@gmail.com</p>
-                </a>
-                <a href="tel:+8801609099183" class="contact-item">
-                    <i class="fas fa-phone" aria-hidden="true"></i>
-                    <h3 style="margin:0; font-size:0.95rem;">Phone</h3>
-                    <p style="margin:0; color:#cfe0ff; font-size:0.9rem;">+8801609099183</p>
-                </a>
-                <a href="https://www.linkedin.com/in/marufmullah50" target="_blank" class="contact-item" rel="noopener">
-                    <i class="fab fa-linkedin" aria-hidden="true"></i>
-                    <h3 style="margin:0; font-size:0.95rem;">LinkedIn</h3>
-                    <p style="margin:0; color:#cfe0ff; font-size:0.9rem;">marufmullah50</p>
-                </a>
-                <a href="https://github.com/marufmullah50" target="_blank" class="contact-item" rel="noopener">
-                    <i class="fab fa-github" aria-hidden="true"></i>
-                    <h3 style="margin:0; font-size:0.95rem;">GitHub</h3>
-                    <p style="margin:0; color:#cfe0ff; font-size:0.9rem;">marufmullah50</p>
-                </a>
-            </div>
-
-            <div style="margin-top:0.9rem;">
-                <h4 style="color:#9fb2ff; margin-bottom:0.45rem;">Send me a message</h4>
-                <form id="messageForm" class="contact-form" onsubmit="return sendMail(event)">
-                    <div class="form-row">
-                        <input type="text" id="fname" class="form-control" placeholder="Your name" required>
-                        <input type="email" id="femail" class="form-control" placeholder="Your email" required>
-                    </div>
-                    <input type="text" id="fsubject" placeholder="Subject" required>
-                    <textarea id="fmessage" placeholder="Your message" required></textarea>
-                    <div style="display:flex; gap:0.5rem; align-items:center;">
-                        <button type="submit" class="form-submit">Send Message</button>
-                    </div>
-                </form>
-            </div>
-        </section>
-
-        <!-- Download CV -->
-        <section id="cv" class="section-block" aria-labelledby="cv-title">
-            <h2 id="cv-title" class="section-title">Download CV</h2>
-            <div style="text-align:center;">
-                <a href="https://github.com/marufmullah50/CV_Resume" class="cv-btn" target="_blank" rel="noopener">
-                    <i class="fas fa-download" style="margin-right:6px;"></i> Download CV or Resume
-                </a>
-            </div>
+</html>
