@@ -125,9 +125,18 @@ p {
 
 .glass-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
-    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+    background: rgba(255, 255, 255, 0.9);
     border-color: rgba(255, 255, 255, 0.6);
+}
+
+/* Dark mode hover fix for glass-card */
+@media (prefers-color-scheme: dark) {
+    .glass-card:hover {
+        background: rgba(30, 41, 59, 0.9);
+        border-color: rgba(255, 255, 255, 0.15);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+    }
 }
 
 /* Layout Utilities */
@@ -444,21 +453,113 @@ footer {
 .animate-fade-in {
     animation: fadeIn 0.8s ease forwards;
 }
+
+/* Project Card Styles */
+.project-card {
+    display: grid;
+    grid-template-columns: 350px 1fr;
+    gap: 30px;
+    padding: 25px;
+    align-items: start;
+    overflow: hidden;
+}
+
+.carousel-container {
+    width: 100%;
+    max-width: 350px;
+    height: 250px;
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    background: rgba(0, 0, 0, 0.05);
+    flex-shrink: 0;
+}
+
+.carousel-track {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s ease;
+}
+
+.carousel-slide {
+    min-width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(37, 99, 235, 0.05);
+}
+
+.carousel-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: rgba(0, 0, 0, 0.02);
+}
+
+.project-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+}
+
+.project-content h3 {
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+    color: var(--text-primary);
+}
+
+.project-content p {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    margin-bottom: 0;
+}
+
+.project-tag {
+    display: inline-block;
+    padding: 5px 12px;
+    background: var(--primary-color);
+    color: white;
+    font-size: 0.8rem;
+    font-weight: 600;
+    border-radius: 20px;
+    white-space: nowrap;
+}
+
+/* Responsive Project Cards */
+@media (max-width: 900px) {
+    .project-card {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .carousel-container {
+        max-width: 100%;
+        height: 220px;
+    }
+}
+
 /*Form Styles*/
 /* Enhanced Contact Form Styles - Smaller Version */
 .contact-form {
     width: 100%;
-    max-width: 450px; /* Reduced from 600px */
+    max-width: 450px;
+    /* Reduced from 600px */
     margin: 0 auto;
 }
 
 .form-group {
-    margin-bottom: 18px; /* Reduced from 24px */
+    margin-bottom: 18px;
+    /* Reduced from 24px */
 }
 
 .form-group label {
     display: block;
-    font-size: 14px; /* Reduced from 16px */
+    font-size: 14px;
+    /* Reduced from 16px */
     font-weight: 600;
     color: #ffffff;
     margin-bottom: 6px;
@@ -467,8 +568,10 @@ footer {
 .form-group input,
 .form-group textarea {
     width: 100%;
-    padding: 10px 12px; /* Reduced from 14px 16px */
-    font-size: 14px; /* Reduced from 16px */
+    padding: 10px 12px;
+    /* Reduced from 14px 16px */
+    font-size: 14px;
+    /* Reduced from 16px */
     background-color: #1a2332;
     border: 2px solid #2d3748;
     border-radius: 6px;
@@ -484,15 +587,18 @@ footer {
 }
 
 .form-group textarea {
-    min-height: 120px; /* Reduced from 150px */
+    min-height: 120px;
+    /* Reduced from 150px */
     resize: vertical;
     font-family: inherit;
 }
 
 .submit-btn {
     width: 100%;
-    padding: 12px 24px; /* Reduced from 16px 32px */
-    font-size: 16px; /* Reduced from 18px */
+    padding: 12px 24px;
+    /* Reduced from 16px 32px */
+    font-size: 16px;
+    /* Reduced from 18px */
     font-weight: 600;
     background: linear-gradient(135deg, #4299e1 0%, #3182ce 100%);
     color: white;
